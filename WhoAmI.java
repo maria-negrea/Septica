@@ -14,5 +14,6 @@ public class WhoAmI {
     InetAddress a = 
       InetAddress.getByName("Kandinsky");
     System.out.println(a);
+    System.out.println("Afara bate vantul!);
   }
 }
