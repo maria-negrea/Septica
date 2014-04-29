@@ -8,26 +8,18 @@ public class Game {
 	private CardDeck deck;
 	private List <Player> players; 
 	private Hand currentHand;
-	private Server server;
-	
 	
 	public Game() {
-	if (server
 		deck = new CardDeck();
 		players = new ArrayList <Player>();
-		server = new Server();
 	}
-	
 	
 	public void addPlayer( String name ) {
 		Player p = new Player(name);
 		players.add(p);
 	}
 	
-
 	public void startGame() {
-		if (server.has4()) {
-	
 		deck.shuffle();
 		Integer count = deck.cut( players.get(0) );
 		
@@ -41,7 +33,6 @@ public class Game {
 		for ( ; count < 4; count ++ )
 			dealCards();
 	}
-};
 	
 	public void dealCards() {
 		if ( deck.size() > 0 )
