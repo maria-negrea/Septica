@@ -108,7 +108,7 @@ public class Server implements Runnable {
 		Integer count = 0;
 		currentGame = new Game();
 		
-		while (!s.isClosed() && count < 1) {
+		while (!s.isClosed() && count < 4) {
 			try {
 				System.out.println(s.isClosed());
 				socketClient = (!s.isClosed())? s.accept() : null;
@@ -217,12 +217,10 @@ public class Server implements Runnable {
 		currentGame.startGame();
 		
 		//while (!currentGame.endOfGame()) {
-			for (Integer i = 0; i < 1; i++)
+			for (Integer i = 0; i < 4; i++)
 			{
-				this.SendTo(currentGame.getCurrentHand(i), i);
+				SendTo(currentGame.getCurrentHand(i), i);
 			}
-			
-			SendTo("Hello", 0);
 			
 		//}
 	}

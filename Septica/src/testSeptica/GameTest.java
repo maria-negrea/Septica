@@ -14,10 +14,10 @@ public class GameTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		game = new Game();
-		game.addPlayer("AlinaB");
-		game.addPlayer("Maria");
-		game.addPlayer("Andrei");
-		game.addPlayer("AlinaZ");
+		game.addPlayer(0, "AlinaB");
+		game.addPlayer(1, "Maria");
+		game.addPlayer(2, "Andrei");
+		game.addPlayer(3, "AlinaZ");
 	}
 
 	@Test

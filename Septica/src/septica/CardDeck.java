@@ -25,20 +25,24 @@ public class CardDeck {
 		ArrayList <Card> newDeck = new ArrayList <Card> ();
 		
 		Random randomGenerator = new Random();
-		while ( cards.size() != 0 )
+		for (int i= 0; i < 32; )
 		{
 			Integer index = randomGenerator.nextInt( cards.size() );
-			Card c = cards.get(index);
-			cards.remove(index);
-			newDeck.add(c);
+			if (cards.get(index) != null)
+			{
+				Card c = cards.get(index);
+				cards.set(index, null);
+				newDeck.add(c);
+				i++;
+			}
 		}
 		 
 		cards = newDeck;
 	}
 	
 	public void deal( Player p ) {
-		Card c = cards.get( cards.size() );
-		cards.remove( cards.size() );
+		Card c = cards.get( cards.size() - 1 );
+		cards.remove( cards.size() - 1 );
 		p.drawCard(c);
 	}
 	
@@ -47,8 +51,8 @@ public class CardDeck {
 		Integer count = 0;
 		do
 		{
-			c = cards.get( cards.size() );
-			cards.remove( cards.size() );
+			c = cards.get( cards.size() - 1 );
+			cards.remove( cards.size() - 1 );
 			if ( c.getValue() == 7 ) {
 				p.drawCard(c);
 				count ++;
