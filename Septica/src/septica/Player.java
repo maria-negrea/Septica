@@ -7,11 +7,24 @@ public class Player {
 	private List <Card> hand;
 	private Integer score;
 	private String name;
-	
-	public Player( String newName ) {
+	private Integer id;
+
+	public Player( Integer newId ) {
 		hand = new ArrayList <Card> ();
+		id = newId;
+		name = null;
+		score = 0;
+	}
+	
+	public Player( Integer newId, String newName ) {
+		hand = new ArrayList <Card> ();
+		id = newId;
 		name = newName;
 		score = 0;
+	}
+	
+	public Integer getId() {
+		return id;
 	}
 	
 	public Integer getScore() {
@@ -50,6 +63,14 @@ public class Player {
 		for ( Card c : hand )
 			if ( c.getValue() == value )
 				return true;
-		return false;
+		return false; 
+	}
+	
+	public String toString() {
+		String str = new String();
+
+		for (Card card : hand)
+			str += card.toString() + " ";
+		return str;
 	}
 }

@@ -28,10 +28,11 @@ import javax.swing.border.SoftBevelBorder;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
-import com.septica.andrei.Client;
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-import com.sun.corba.se.impl.protocol.giopmsgheaders.MessageBase;
+import com.septica.Client;
 
+/*import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
+import com.sun.corba.se.impl.protocol.giopmsgheaders.MessageBase;
+*/
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.GridLayout;

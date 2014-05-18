@@ -13,9 +13,14 @@ public class Game {
 		deck = new CardDeck();
 		players = new ArrayList <Player>();
 	}
+
+	public void addPlayer( int id ) {
+		Player p = new Player(id);
+		players.add(p);
+	}
 	
-	public void addPlayer( String name ) {
-		Player p = new Player(name);
+	public void addPlayer( int id, String name ) {
+		Player p = new Player(id, name);
 		players.add(p);
 	}
 	
@@ -69,7 +74,7 @@ public class Game {
 	}
 	
 	public boolean canContinue( Player p, Integer value ) {
-		return p.findCard(value);
+		return p.findCard(value) || p.findCard(7);
 	}
 		
 	public void winHand() {
@@ -93,5 +98,12 @@ public class Game {
 		if ( players.get(0).numberOfCards() == 0 )
 			return true;
 		return false;
+	}
+	
+	public String getCurrentHand(Integer i) {
+		for (Player p : players)
+			if (p.getId() == i)
+				return p.toString();
+		return null;
 	}
 }
