@@ -425,11 +425,9 @@ public class MainSeptica extends JFrame {
 		/*client.send(description);*/
 	}
 	
-	public void getPlayersChoices(List<String> playersChoices)
+	public void getPlayersChoices(String description, String playerPosition)
 	{
-		initializeCard(lblLeftPlayerCard, playersChoices.get(0));
-		initializeCard(lblTopPlayerCard, playersChoices.get(1));
-		initializeCard(lblRightPlayerCard, playersChoices.get(2));
+		
 	}
 
 	/**
