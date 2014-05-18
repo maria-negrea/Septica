@@ -1,59 +1,65 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.Image;
-import java.awt.SystemColor;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-
-import java.awt.Label;
-
-import javax.swing.SwingConstants;
-import javax.swing.BoxLayout;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.GridLayout;
-import java.awt.Panel;
-import java.awt.Button;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.border.BevelBorder;
-import javax.swing.UIManager;
-import javax.swing.JLabel;
-import java.awt.CardLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Component;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.ComponentOrientation;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.border.TitledBorder;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import com.septica.andrei.Client;
+import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
+import com.sun.corba.se.impl.protocol.giopmsgheaders.MessageBase;
+
+import net.miginfocom.swing.MigLayout;
+
+import java.awt.GridLayout;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+
 public class MainSeptica extends JFrame {
 
 	private JPanel contentPane;
+	private List<ImageIcon> cards;
+	private MyLabel lblTopPlayerCard;
+	private MyLabel lblLeftPlayerCard;
+	private MyLabel lblRightPlayerCard;
+	private MyLabel lblCurrentPlayerCard;
+	private MyLabel lblFirstCard;
+	private MyLabel lblSecondCard;
+	private MyLabel lblThirdCard;
+	private MyLabel lblFourthCard;
+	private JPanel panelCards;
+	private Client client;
 
 	/**
 	 * Launch the application.
 	 */
+	
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -66,11 +72,374 @@ public class MainSeptica extends JFrame {
 			}
 		});
 	}
+	
+	public void initializeCard(MyLabel card,String description)
+	{
+		switch(description)
+		{
+			case "7R":
+			{
+				card.imageIcon.setImage((cards.get(0)).getImage());
+				break;
+				
+			}
+			case "7T":
+			{
+				card.imageIcon.setImage((cards.get(1)).getImage());
+				break;
+				
+			}
+			case "7IN":
+			{
+				card.imageIcon.setImage((cards.get(2)).getImage());
+				break;
+				
+			}
+			case "7IR":
+			{
+				card.imageIcon.setImage((cards.get(3)).getImage());
+				break;
+				
+			}
+			case "8R":
+			{
+				card.imageIcon.setImage((cards.get(4)).getImage());
+				break;
+				
+			}
+			case "8T":
+			{
+				card.imageIcon.setImage((cards.get(5)).getImage());
+				break;
+				
+			}
+			case "8IN":
+			{
+				card.imageIcon.setImage((cards.get(6)).getImage());
+				break;
+				
+			}
+			case "8IR":
+			{
+				card.imageIcon.setImage((cards.get(7)).getImage());
+				break;
+				
+			}
+			case "9R":
+			{
+				card.imageIcon.setImage((cards.get(8)).getImage());
+				break;
+				
+			}
+			case "9T":
+			{
+				card.imageIcon.setImage((cards.get(9)).getImage());
+				break;
+				
+			}
+			case "9IN":
+			{
+				card.imageIcon.setImage((cards.get(10)).getImage());
+				break;
+				
+			}
+			case "9IR":
+			{
+				card.imageIcon.setImage((cards.get(11)).getImage());
+				break;
+				
+			}
+			case "10R":
+			{
+				card.imageIcon.setImage((cards.get(12)).getImage());
+				break;
+				
+			}
+			case "10T":
+			{
+				card.imageIcon.setImage((cards.get(13)).getImage());
+				break;
+				
+			}
+			case "10IN":
+			{
+				card.imageIcon.setImage((cards.get(14)).getImage());
+				break;
+				
+			}
+			case "10IR":
+			{
+				card.imageIcon.setImage((cards.get(15)).getImage());
+				break;
+				
+			}
+			case "11R":
+			{
+				card.imageIcon.setImage((cards.get(16)).getImage());
+				break;
+				
+			}
+			case "11T":
+			{
+				card.imageIcon.setImage((cards.get(17)).getImage());
+				break;
+				
+			}
+			case "11IN":
+			{
+				card.imageIcon.setImage((cards.get(18)).getImage());
+				break;
+				
+			}
+			case "11IR":
+			{
+				card.imageIcon.setImage((cards.get(19)).getImage());
+				break;
+				
+			}
+			case "12R":
+			{
+				card.imageIcon.setImage((cards.get(20)).getImage());
+				break;
+				
+			}
+			case "12T":
+			{
+				card.imageIcon.setImage((cards.get(21)).getImage());
+				break;
+				
+			}
+			case "12IN":
+			{
+				card.imageIcon.setImage((cards.get(22)).getImage());
+				break;
+				
+			}
+			case "12IR":
+			{
+				card.imageIcon.setImage((cards.get(23)).getImage());
+				break;
+				
+			}
+			case "13R":
+			{
+				card.imageIcon.setImage((cards.get(24)).getImage());
+				break;
+				
+			}
+			case "13T":
+			{
+				card.imageIcon.setImage((cards.get(25)).getImage());
+				break;
+				
+			}
+			case "13IN":
+			{
+				card.imageIcon.setImage((cards.get(26)).getImage());
+				break;
+				
+			}
+			case "13IR":
+			{
+				card.imageIcon.setImage((cards.get(27)).getImage());
+				break;
+				
+			}
+			case "14R":
+			{
+				card.imageIcon.setImage((cards.get(28)).getImage());
+				break;
+				
+			}
+			case "14T":
+			{
+				card.imageIcon.setImage((cards.get(29)).getImage());
+				break;
+				
+			}
+			case "14IN":
+			{
+				card.imageIcon.setImage((cards.get(30)).getImage());
+				break;
+				
+			}
+			case "14IR":
+			{
+				card.imageIcon.setImage((cards.get(31)).getImage());
+				break;
+				
+			}
+		}
+		revalidate();
+		repaint();
+	}
+	
+	public void initializeCurrentPlayerCards(List<String> cardsDescriptions)
+	{
+		initializeCard(lblFirstCard, cardsDescriptions.get(0));
+		initializeCard(lblSecondCard, cardsDescriptions.get(1));
+		initializeCard(lblThirdCard, cardsDescriptions.get(2));
+		initializeCard(lblFourthCard, cardsDescriptions.get(3));
+	}
+	
+	
+	public String getCardDescription(ImageIcon card)
+	{
+		int index=cards.indexOf(card);
+		switch(index)
+		{
+			case 0:
+			{
+				return "7R";
+			}
+			case 1:
+			{
+				return "7T";
+			}
+			case 2:
+			{
+				return "7IN";
+			}
+			case 3:
+			{
+				return "7IR";
+			}
+			case 4:
+			{
+				return "8R";
+			}
+			case 5:
+			{
+				return "8T";
+			}
+			case 6:
+			{
+				return "8IN";
+			}
+			case 7:
+			{
+				return "8IR";
+			}
+			case 8:
+			{
+				return "9R";
+			}
+			case 9:
+			{
+				return "9T";
+			}
+			case 10:
+			{
+				return "9IN";
+			}
+			case 11:
+			{
+				return "9IR";
+			}
+			case 12:
+			{
+				return "10R";
+			}
+			case 13:
+			{
+				return "10T";
+			}
+			case 14:
+			{
+				return "10IN";
+			}
+			case 15:
+			{
+				return "10IR";
+			}
+			case 16:
+			{
+				return "11R";
+			}
+			case 17:
+			{
+				return "11T";
+			}
+			case 18:
+			{
+				return "11IN";
+			}
+			case 19:
+			{
+				return "11IR";
+			}
+			case 20:
+			{
+				return "12R";
+			}
+			case 21:
+			{
+				return "12T";
+			}
+			case 22:
+			{
+				return "12IN";
+			}
+			case 23:
+			{
+				return "12IR";
+			}
+			case 24:
+			{
+				return "13R";
+			}
+			case 25:
+			{
+				return "13T";
+			}
+			case 26:
+			{
+				return "13IN";
+			}
+			case 27:
+			{
+				return "13IR";
+			}
+			case 28:
+			{
+				return "14R";
+			}
+			case 29:
+			{
+				return "14T";
+			}
+			case 30:
+			{
+				return "14IN";
+			}
+			case 31:
+			{
+				return "14IR";
+			}
+		}
+		return null;
+	}
+	
+	public void chosenCard(String description)
+	{
+		client.send(description);
+	}
+	
+	public void getPlayersChoices(List<String> playersChoices)
+	{
+		initializeCard(lblLeftPlayerCard, playersChoices.get(0));
+		initializeCard(lblTopPlayerCard, playersChoices.get(1));
+		initializeCard(lblRightPlayerCard, playersChoices.get(2));
+	}
 
 	/**
 	 * Create the frame.
 	 */
+	
+	
+	
 	public MainSeptica() {
+
 		setForeground(new Color(0, 0, 0));
 		setTitle("SEPTICA");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainSeptica.class.getResource("/Images/Septica.png")));
@@ -84,6 +453,71 @@ public class MainSeptica extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
+		cards=new ArrayList<ImageIcon>();
+		initializeCards(cards);
+		
+		initializePanelUp();
+		initializePanelDown();
+		initializePanelLeft();
+		initializePanelRight();
+		initializePanelCenter();	
+		
+		lblFirstCard.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String description=getCardDescription(lblFirstCard.imageIcon);
+				initializeCard(lblCurrentPlayerCard, description);
+				/*lblFirstCard.isVisible()=false;*/
+				chosenCard(description);
+				revalidate();
+				repaint();
+				
+			}
+		});
+		
+		lblSecondCard.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String description=getCardDescription(lblSecondCard.imageIcon);
+				initializeCard(lblCurrentPlayerCard, description);
+				chosenCard(description);
+				revalidate();
+				repaint();
+				
+			}
+		});
+		
+		lblThirdCard.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String description=getCardDescription(lblThirdCard.imageIcon);
+				initializeCard(lblCurrentPlayerCard, description);
+				chosenCard(description);
+				revalidate();
+				repaint();
+				
+			}
+		});
+		
+		lblFourthCard.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String description=getCardDescription(lblFourthCard.imageIcon);
+				initializeCard(lblCurrentPlayerCard, description);
+				chosenCard(description);
+				revalidate();
+				repaint();
+				
+			}
+		});
+	}
+	
+	public void initializePanelUp()
+	{
 		JPanel panelUp = new JPanel();
 		panelUp.setBackground(new Color(153, 204, 153));
 		contentPane.add(panelUp, BorderLayout.NORTH);
@@ -104,7 +538,10 @@ public class MainSeptica extends JFrame {
 		MyLabel label3 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeck.jpg")));
 		label3.setPreferredSize(new Dimension(35, 49));
 		panelUp.add(label3);
-		
+	}
+	
+	public void initializePanelDown()
+	{
 		JPanel panelDown = new JPanel();
 		panelDown.setBorder(null);
 		panelDown.setPreferredSize(new Dimension(10, 150));
@@ -116,22 +553,29 @@ public class MainSeptica extends JFrame {
 		panelCards.setBorder(new LineBorder(new Color(0, 0, 51), 4));
 		panelDown.add(panelCards);
 		
-		JLabel lblFirstCard = new JLabel("");
-		lblFirstCard.setIcon(new ImageIcon(MainSeptica.class.getResource("/Images/9Colt.jpg")));
+		lblFirstCard = new MyLabel(cards.get(24));
+		initializeCard(lblFirstCard, "8R");
+		lblFirstCard.setPreferredSize(new Dimension(75,99));
 		panelCards.add(lblFirstCard);
 		
-		JLabel lblSecondCard = new JLabel("");
-		lblSecondCard.setIcon(new ImageIcon(MainSeptica.class.getResource("/Images/8InimaNeagra.jpg")));
+		lblSecondCard = new MyLabel(cards.get(5));
+		initializeCard(lblSecondCard, "8T");
+		lblSecondCard.setPreferredSize(new Dimension(75,99));
 		panelCards.add(lblSecondCard);
 		
-		JLabel lblThirdCard = new JLabel("");
-		lblThirdCard.setIcon(new ImageIcon(MainSeptica.class.getResource("/Images/10InimaRosie.jpg")));
+		lblThirdCard = new MyLabel(cards.get(26));
+		initializeCard(lblThirdCard, "8IN");
+		lblThirdCard.setPreferredSize(new Dimension(75,99));
 		panelCards.add(lblThirdCard);
 		
-		JLabel lblFourthCard = new JLabel("");
-		lblFourthCard.setIcon(new ImageIcon(MainSeptica.class.getResource("/Images/8InimaRosie.jpg")));
+		lblFourthCard = new MyLabel(cards.get(27));
+		initializeCard(lblFourthCard, "8IR");
+		lblFourthCard.setPreferredSize(new Dimension(75,99));
 		panelCards.add(lblFourthCard);
-		
+	}
+	
+	public void initializePanelLeft()
+	{
 		JPanel panelLeft = new JPanel();
 		panelLeft.setBackground(new Color(153, 204, 153));
 		panelLeft.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -139,48 +583,52 @@ public class MainSeptica extends JFrame {
 		panelLeft.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelLeft.setPreferredSize(new Dimension(100, 10));
 		contentPane.add(panelLeft, BorderLayout.WEST);
-		FlowLayout fl_panelLeft = new FlowLayout(FlowLayout.CENTER, 5, 5);
-		panelLeft.setLayout(fl_panelLeft);
+		panelLeft.setLayout(new MigLayout("", "[grow,center]", "[grow,center][grow,center][grow,center][35px,grow,center][35px,grow,center][35px,grow,center][35px,grow,center][grow,center][grow,center][grow,center]"));
 		
-		MyLabel label4 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated.jpg")));
-		label4.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-		label4.setPreferredSize(new Dimension(49, 35));
-		panelLeft.add(label4);
+		MyLabel label_1 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated2.jpg")));
+		label_1.setPreferredSize(new Dimension(49, 35));
+		panelLeft.add(label_1, "cell 0 3");
 		
-		MyLabel label5 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated.jpg")));
-		label5.setPreferredSize(new Dimension(49, 35));
-		panelLeft.add(label5);
+		MyLabel label_2 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated2.jpg")));
+		label_2.setPreferredSize(new Dimension(49, 35));
+		panelLeft.add(label_2, "cell 0 4");
 		
-		MyLabel label6 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated.jpg")));
-		label6.setPreferredSize(new Dimension(49, 35));
-		panelLeft.add(label6);
+		MyLabel label_3 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated2.jpg")));
+		label_3.setPreferredSize(new Dimension(49, 35));
+		panelLeft.add(label_3, "cell 0 5");
 		
-		MyLabel label7 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated.jpg")));
-		label7.setPreferredSize(new Dimension(49, 35));
-		panelLeft.add(label7);
-		panelLeft.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{label4, label5, label6, label7}));
-		
+		MyLabel label_4 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated2.jpg")));
+		label_4.setPreferredSize(new Dimension(49, 35));
+		panelLeft.add(label_4, "cell 0 6");
+	}
+	
+	public void initializePanelRight()
+	{
 		JPanel panelRight = new JPanel();
 		panelRight.setBackground(new Color(153, 204, 153));
 		panelRight.setPreferredSize(new Dimension(100, 10));
 		contentPane.add(panelRight, BorderLayout.EAST);
+		panelRight.setLayout(new MigLayout("", "[grow,center]", "[grow,center][grow,center][grow,center][grow,center][grow,center][grow,center][grow,center][grow,center][grow,center][grow,center]"));
 		
-		MyLabel label8 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated.jpg")));
-		label8.setPreferredSize(new Dimension(49, 35));
-		panelRight.add(label8);
+		MyLabel label_5 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated2.jpg")));
+		label_5.setPreferredSize(new Dimension(49,35));
+		panelRight.add(label_5, "cell 0 3");
 		
-		MyLabel label9 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated.jpg")));
-		label9.setPreferredSize(new Dimension(49, 35));
-		panelRight.add(label9);
+		MyLabel label_6 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated2.jpg")));
+		label_6.setPreferredSize(new Dimension(49,35));
+		panelRight.add(label_6, "cell 0 4");
 		
-		MyLabel label10 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated.jpg")));
-		label10.setPreferredSize(new Dimension(49, 35));
-		panelRight.add(label10);
+		MyLabel label_7 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated2.jpg")));
+		label_7.setPreferredSize(new Dimension(49,35));
+		panelRight.add(label_7, "cell 0 5");
 		
-		MyLabel label11 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated.jpg")));
-		label11.setPreferredSize(new Dimension(49, 35));
-		panelRight.add(label11);
-		
+		MyLabel label_8 = new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated2.jpg")));
+		label_8.setPreferredSize(new Dimension(49,35));
+		panelRight.add(label_8, "cell 0 6");
+	}
+	
+	public void initializePanelCenter()
+	{
 		JPanel panelCenter = new JPanel();
 		panelCenter.setBorder(new MatteBorder(3, 2, 1, 3, (Color) new Color(51, 51, 51)));
 		contentPane.add(panelCenter, BorderLayout.CENTER);
@@ -190,7 +638,7 @@ public class MainSeptica extends JFrame {
 		panel.setBackground(new Color(0, 102, 51));
 		panelCenter.add(panel, BorderLayout.NORTH);
 		
-		MyLabel lblTopPlayerCard=new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/10InimaNeagra.jpg")));
+		lblTopPlayerCard=new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/10InimaNeagra.jpg")));
 		lblTopPlayerCard.setPreferredSize(new Dimension(50,70));
 		panel.add(lblTopPlayerCard);
 		
@@ -199,7 +647,7 @@ public class MainSeptica extends JFrame {
 		panel_1.setPreferredSize(new Dimension(75, 10));
 		panelCenter.add(panel_1, BorderLayout.WEST);
 		
-		MyLabel lblLeftPlayerCard=new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/10InimaNeagra.jpg")));
+		lblLeftPlayerCard=new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/10InimaNeagra.jpg")));
 		lblLeftPlayerCard.setPreferredSize(new Dimension(50,70));
 		panel_1.add(lblLeftPlayerCard);
 		
@@ -210,8 +658,16 @@ public class MainSeptica extends JFrame {
 		flowLayout.setVgap(20);
 		flowLayout.setHgap(10);
 		panelCenter.add(panel_2, BorderLayout.CENTER);
-		
 		MyLabel lblDeck=new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/imagesDeckRotated.jpg")));
+		lblDeck.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblFirstCard.setIcon(cards.get(0));
+				lblSecondCard.setIcon(cards.get(1));
+				lblThirdCard.setIcon(cards.get(2));
+				lblFourthCard.setIcon(cards.get(3));
+			}
+		});
 		lblDeck.setPreferredSize(new Dimension(70,50));
 		panel_2.add(lblDeck);
 		
@@ -220,24 +676,61 @@ public class MainSeptica extends JFrame {
 		panel_3.setPreferredSize(new Dimension(75, 10));
 		panelCenter.add(panel_3, BorderLayout.EAST);
 		
-		MyLabel lblRightPlayerCard=new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/10InimaNeagra.jpg")));
-		lblRightPlayerCard.setBackground(new Color(0, 102, 51));
+		lblRightPlayerCard=new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/10InimaNeagra.jpg")));
 		lblRightPlayerCard.setPreferredSize(new Dimension(50,70));
 		panel_3.add(lblRightPlayerCard);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(new Color(0, 102, 51));
-		panelCenter.add(panel_4, BorderLayout.SOUTH);
-		
+		panelCenter.add(panel_4, BorderLayout.SOUTH);		
 
-		MyLabel lblCurrentPlayerCard=new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/10InimaNeagra.jpg")));
+		lblCurrentPlayerCard=new MyLabel(new ImageIcon(MainSeptica.class.getResource("/Images/10InimaNeagra.jpg")));		
 		lblCurrentPlayerCard.setPreferredSize(new Dimension(50,70));
 		panel_4.add(lblCurrentPlayerCard);
+	}
+
+	public void initializeCards(List<ImageIcon> cards)
+	{
 		
-		
-		
-		
-		
+		addImageIconToList("/Images/7Colt.jpg", cards);
+		addImageIconToList("/Images/7Trefla.jpg", cards);
+		addImageIconToList("/Images/7InimaNeagra.jpg", cards);
+		addImageIconToList("/Images/7InimaRosie.jpg", cards);		
+		addImageIconToList("/Images/8Colt.jpg", cards);
+		addImageIconToList("/Images/8Trefla.jpg", cards);
+		addImageIconToList("/Images/8InimaNeagra.jpg", cards);
+		addImageIconToList("/Images/8InimaRosie.jpg", cards);		
+		addImageIconToList("/Images/9Colt.jpg", cards);
+		addImageIconToList("/Images/9Trefla.jpg", cards);
+		addImageIconToList("/Images/9InimaNeagra.jpg", cards);
+		addImageIconToList("/Images/9InimaRosie.jpg", cards);		
+		addImageIconToList("/Images/10Colt.jpg", cards);
+		addImageIconToList("/Images/10Trefla.jpg", cards);
+		addImageIconToList("/Images/10InimaNeagra.jpg", cards);
+		addImageIconToList("/Images/10InimaRosie.jpg", cards);	
+		addImageIconToList("/Images/AsColt.jpg", cards);
+		addImageIconToList("/Images/AsTrefla.jpg", cards);
+		addImageIconToList("/Images/AsInimaNeagra.jpg", cards);
+		addImageIconToList("/Images/AsInimaRosie.jpg", cards);		
+		addImageIconToList("/Images/JColt.jpg", cards);
+		addImageIconToList("/Images/JTrefla.jpg", cards);
+		addImageIconToList("/Images/JInimaNeagra.jpg", cards);
+		addImageIconToList("/Images/JInimaRosie.jpg", cards);		
+		addImageIconToList("/Images/QColt.jpg", cards);
+		addImageIconToList("/Images/QTrefla.jpg", cards);
+		addImageIconToList("/Images/QInimaNeagra.jpg", cards);
+		addImageIconToList("/Images/QInimaRosie.jpg", cards);		
+		addImageIconToList("/Images/KColt.jpg", cards);
+		addImageIconToList("/Images/KTrefla.jpg", cards);
+		addImageIconToList("/Images/KInimaNeagra.jpg", cards);
+		addImageIconToList("/Images/KInimaRosie.jpg", cards);
 		
 	}
+	
+	public void addImageIconToList(String path, List<ImageIcon> cards)
+	{
+		ImageIcon img=new ImageIcon(MainSeptica.class.getResource(path));
+		cards.add(img);
+	}
+	
 }
