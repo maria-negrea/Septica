@@ -422,7 +422,7 @@ public class MainSeptica extends JFrame {
 	
 	public void chosenCard(String description)
 	{
-		client.send(description);
+		/*client.send(description);*/
 	}
 	
 	public void getPlayersChoices(List<String> playersChoices)
@@ -469,6 +469,7 @@ public class MainSeptica extends JFrame {
 				String description=getCardDescription(lblFirstCard.imageIcon);
 				initializeCard(lblCurrentPlayerCard, description);
 				/*lblFirstCard.isVisible()=false;*/
+				lblFirstCard.setVisible(false);
 				chosenCard(description);
 				revalidate();
 				repaint();
@@ -482,6 +483,7 @@ public class MainSeptica extends JFrame {
 				
 				String description=getCardDescription(lblSecondCard.imageIcon);
 				initializeCard(lblCurrentPlayerCard, description);
+				lblSecondCard.setVisible(false);
 				chosenCard(description);
 				revalidate();
 				repaint();
@@ -495,6 +497,7 @@ public class MainSeptica extends JFrame {
 				
 				String description=getCardDescription(lblThirdCard.imageIcon);
 				initializeCard(lblCurrentPlayerCard, description);
+				lblThirdCard.setVisible(false);
 				chosenCard(description);
 				revalidate();
 				repaint();
@@ -508,6 +511,7 @@ public class MainSeptica extends JFrame {
 				
 				String description=getCardDescription(lblFourthCard.imageIcon);
 				initializeCard(lblCurrentPlayerCard, description);
+				lblFourthCard.setVisible(false);
 				chosenCard(description);
 				revalidate();
 				repaint();
