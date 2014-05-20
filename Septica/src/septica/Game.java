@@ -45,7 +45,10 @@ public class Game {
 				deck.deal(p);
 	}
 	
-	public boolean playHand( Card[] c, boolean continueHand ) {
+	public boolean playHand( String[] cards, boolean continueHand ) {
+		Card[] c = new Card[4];
+		for (int i = 0; i < 4; i++)
+			c[i] = new Card(cards[i]);
 		if ( continueHand == false )
 			currentHand = new Hand( c[0].getValue(), 0, 0 );
 		
@@ -105,5 +108,16 @@ public class Game {
 			if (p.getId() == i)
 				return p.toString();
 		return null;
+	}
+	
+	public Integer getFirstPlayer() {
+		return players.get(0).getId();
+	}
+	
+	public String getCurrentStatus(Integer i) {
+		if (i == 0 || i == 3)
+			return "You won!";
+		else
+			return "You lost...";
 	}
 }

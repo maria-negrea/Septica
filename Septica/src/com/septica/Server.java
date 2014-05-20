@@ -37,7 +37,8 @@ public class Server implements Runnable {
 	public static Hashtable<String, String> users;
 	public String usersForClients;
 	public Game currentGame;
-	
+	private boolean continueHand;
+	private int firstPlayer;
 
 	void notifyAllO(String t) {
 		if (observers != null)
@@ -107,6 +108,8 @@ public class Server implements Runnable {
 
 		Integer count = 0;
 		currentGame = new Game();
+		continueHand = false;
+		firstPlayer = 0;
 		
 		while (!s.isClosed() && count < 4) {
 			try {
@@ -216,13 +219,57 @@ public class Server implements Runnable {
 	public void playGame() {
 		currentGame.startGame();
 		
-		//while (!currentGame.endOfGame()) {
+		while (!currentGame.endOfGame()) {
 			for (Integer i = 0; i < 4; i++)
 			{
 				SendTo(currentGame.getCurrentHand(i), i);
 			}
 			
-		//}
+			List<String> cards = new ArrayList<>();
+			int currentPlayer = firstPlayer;
+			for (int it = 0; it < 4; it++)
+			{
+				ServerSocketThread sst = sockets.get(currentPlayer);
+				SendTo("play", currentPlayer);
+				
+				String card;
+				do 
+				{
+					sst.run();
+					card = sst.getPlayedCard();
+				}while (card == null);
+				cards.add(card);
+				
+				for (Integer i = 0; i < 4; i++)
+				{
+					SendTo((i - firstPlayer) + ":" + card, i);
+				}
+				
+				currentPlayer++;
+				currentPlayer %= 4;
+			}
+			
+			boolean canContinueHand = currentGame.playHand((String[])cards.toArray(), continueHand);
+			
+			if (canContinueHand == true)
+			{
+				SendTo("continue?", firstPlayer);
+				
+				ServerSocketThread sst = sockets.get(firstPlayer);
+				sst.run();
+				continueHand = sst.getContinue();
+			}
+			else
+			{
+				currentGame.winHand();
+				firstPlayer = currentGame.getFirstPlayer();
+			}
+		}
+		
+		for (Integer i = 0; i < 4; i++)
+		{
+			SendTo(currentGame.getCurrentStatus(i), i);
+		}
 	}
 
 }

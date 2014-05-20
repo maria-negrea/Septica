@@ -25,7 +25,10 @@ public class ServerSocketThread extends Thread {
 	public ObserverO oneO;
 	public String MyName;
 	public Integer MyId;
+	public String PlayedCard;
+	public boolean Continue;
 	boolean running =true;
+	
 	public String getMyName() {
 		return MyName;
 	}
@@ -36,6 +39,14 @@ public class ServerSocketThread extends Thread {
 	
 	public Integer getMyId() {
 		return MyId;
+	}
+	
+	public String getPlayedCard() {
+		return PlayedCard;
+	}
+	
+	public boolean getContinue() {
+		return Continue;
 	}
 	
 	public void setMyName(String myName) {
@@ -59,7 +70,7 @@ public class ServerSocketThread extends Thread {
 	public ServerSocketThread(Socket cSocket, Server s) {
 		observers = new ArrayList<ObserverO>();
 		this.socket = cSocket;
-		
+		this.PlayedCard = null;
 		ser = s;
 		//oneO = sstO;
 		try {
@@ -76,7 +87,7 @@ public class ServerSocketThread extends Thread {
 	public void send(String message) {
 		// System.out.println(out);
 		if (running) {
-		out.println(message);
+			out.println(message);
 		this.notifyAllO("(out) notified " + message);
 		}
 	}
@@ -85,16 +96,27 @@ public class ServerSocketThread extends Thread {
 
 		while (!socket.isClosed() && running) {
 
+			this.PlayedCard = null;
+			this.Continue = false;
 			try {
-			
+				
 				if ((toReceive = in.readLine()) != null) {
 					System.out.println(toReceive);
 					if (toReceive.equals("close")) {
 						socket.close();
 						running = false;
 					}
-					else {
+					else if (toReceive.contains("chat")){
 						this.notifyAllO("(in) notified " + toReceive);
+					}
+					else if (toReceive.equals("continue")) {
+						this.Continue = true;
+					}
+					else if (toReceive.equals("end")) {
+						this.Continue = false;
+					}
+					else {
+						this.PlayedCard = toReceive;
 					}
 				}
 			} catch (IOException e) {

@@ -1,7 +1,5 @@
 package septica;
 
-import java.util.Map;
-
 public class Card {
 	private char symbol;
 	private Integer value;
@@ -17,25 +15,37 @@ public class Card {
 		value = newValue;
 	}
 	
-	public Card( String newSymbol, Integer newValue ) {
-		switch(newSymbol) {
+	private char stringToSymbol( String symbol ) {
+		char s;
+		switch(symbol) {
 			case "IR":
-				symbol = 0;
+				s = 0;
 				break;
 			case "IN":
-				symbol = 1;
+				s = 1;
 				break;
 			case "R":
-				symbol = 2;
+				s = 2;
 				break;
 			case "T":
-				symbol = 3;
+				s = 3;
 				break;
 			default:
-				symbol = 0;
+				s = 0;
 				break;
 		}
+		return s;
+	}
+	
+	public Card( String newSymbol, Integer newValue ) {
+		symbol = stringToSymbol(newSymbol);
 		value = newValue;
+	}
+	
+	public Card(String card) {
+		String[] str = card.split("-");
+		value = Integer.parseInt(str[0]);
+		symbol = stringToSymbol(str[1]);
 	}
 
 
