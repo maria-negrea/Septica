@@ -26,7 +26,7 @@ public class Client implements Runnable {
 	public boolean running = true;
 	public int c;
 
-	Client(int i) {
+	public Client(int i) {
 		id = i;
 
 		observers = new ArrayList<ObserverO>();

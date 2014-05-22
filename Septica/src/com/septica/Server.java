@@ -222,7 +222,7 @@ public class Server implements Runnable {
 		while (!currentGame.endOfGame()) {
 			for (Integer i = 0; i < 4; i++)
 			{
-				SendTo(currentGame.getCurrentHand(i), i);
+				SendTo("current cards " + currentGame.getCurrentHand(i), i);
 			}
 			
 			List<String> cards = new ArrayList<>();
@@ -242,7 +242,7 @@ public class Server implements Runnable {
 				
 				for (Integer i = 0; i < 4; i++)
 				{
-					SendTo((i - firstPlayer) + ":" + card, i);
+					SendTo("card down " + (i - firstPlayer) + ":" + card, i);
 				}
 				
 				currentPlayer++;

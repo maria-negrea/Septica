@@ -115,9 +115,23 @@ public class Game {
 	}
 	
 	public String getCurrentStatus(Integer i) {
+		StringBuffer str = new StringBuffer();
 		if (i == 0 || i == 3)
-			return "You won!";
+			str.append("You won!");
 		else
-			return "You lost...";
+			str.append("You lost.");
+		str.append(" Your score: " + players.get(1).getScore());
+		return str.toString();
+	}
+	
+	public Player getPlayerById(Integer id) {
+		for (Player p : players)
+			if (p.getId() == id)
+				return p;
+		return null;
+	}
+	
+	public Player getPlayerByIndex(Integer index) {
+		return players.get(index);
 	}
 }

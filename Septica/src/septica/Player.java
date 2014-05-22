@@ -69,8 +69,14 @@ public class Player {
 	public String toString() {
 		String str = new String();
 
-		for (Card card : hand)
+		int i = 0;
+		for (Card card : hand) {
 			str += card.toString() + " ";
+			i++;
+		}
+		
+		for (int j = i; j < 4; j++)
+			str += "none ";
 		return str;
 	}
 }
