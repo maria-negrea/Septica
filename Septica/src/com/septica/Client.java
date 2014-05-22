@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.swing.JTextArea;
 
+import designPatterns.ObserverSeptica;
+
 public class Client implements Runnable {
 
 	public int id;
@@ -22,14 +24,14 @@ public class Client implements Runnable {
 	PrintWriter out;
 	BufferedReader in;
 	String toReceive;
-	List<ObserverO> observers;
+	List<ObserverSeptica> observers;
 	public boolean running = true;
 	public int c;
 
 	public Client(int i) {
 		id = i;
 
-		observers = new ArrayList<ObserverO>();
+		observers = new ArrayList<ObserverSeptica>();
 
 		try {
 			address = InetAddress.getByName(null);
@@ -65,23 +67,20 @@ public class Client implements Runnable {
 
 	void notifyAllO(String t, String code) {
 		int i=1;
-		if (!code.equalsIgnoreCase("TOALL")) {
-			for (ObserverO x : observers)
-				if (x != null) {
-					x.update(t);
-				}
-		} else {
-			for (ObserverO x : observers) {
-				System.out.println(i+" "+"IDENTITY:"+x.getIdentity());
-				if ( (x != null) && (x.getIdentity().equalsIgnoreCase("TOALL"))) {
-					x.update(t);
-				}
-				i++;
-			}
+		String[] split = code.split(" ");
+		int k = 1;
+		for (ObserverSeptica x : observers) {
+			if (x.getId().equals("playerCard"))
+				x.update(split[k]);
+			if(x.getId().equals("cardDown"));
+				x.update(split[k]);
+			k++;
+
 		}
+
 	}
 
-	public void addObserver(ObserverO o) {
+	public void addObserver(ObserverSeptica o) {
 		observers.add(o);
 	}
 
@@ -98,9 +97,9 @@ public class Client implements Runnable {
 	public void process(String mesaj) {
 		String[] splited = mesaj.split(" ");
 		switch (splited[0]) {
-		case "ok":
-			System.out.println(splited[0]);
-			notifyAllO(mesaj.substring(3, mesaj.length()), "");
+		case "currentCards":
+			 notifyAllO("playerCard", mesaj);
+			 System.out.println("process playerCard");
 			break;
 		case "nok":
 			System.out.println(splited[0]);
@@ -114,6 +113,7 @@ public class Client implements Runnable {
 			notifyAllO(mesaj, "");
 			break;
 		}
+
 	}
 
 	@Override
