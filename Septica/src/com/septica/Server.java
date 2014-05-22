@@ -222,7 +222,7 @@ public class Server implements Runnable {
 		while (!currentGame.endOfGame()) {
 			for (Integer i = 0; i < 4; i++)
 			{
-				SendTo("current cards " + currentGame.getCurrentHand(i), i);
+				SendTo("currentCards " + currentGame.getCurrentHand(i), i);
 			}
 			
 			List<String> cards = new ArrayList<>();
@@ -235,14 +235,14 @@ public class Server implements Runnable {
 				String card;
 				do 
 				{
-					sst.run();
+					//sst.run();
 					card = sst.getPlayedCard();
 				}while (card == null);
 				cards.add(card);
 				
 				for (Integer i = 0; i < 4; i++)
 				{
-					SendTo("card down " + (i - firstPlayer) + ":" + card, i);
+					SendTo("cardDown " + (i - firstPlayer) + ":" + card, i);
 				}
 				
 				currentPlayer++;
@@ -256,7 +256,7 @@ public class Server implements Runnable {
 				SendTo("continue?", firstPlayer);
 				
 				ServerSocketThread sst = sockets.get(firstPlayer);
-				sst.run();
+				//sst.run();
 				continueHand = sst.getContinue();
 			}
 			else
