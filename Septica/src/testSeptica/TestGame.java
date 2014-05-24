@@ -2,7 +2,7 @@ package testSeptica;
 
 import static org.junit.Assert.*;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import septica.Game;
@@ -10,69 +10,98 @@ import septica.Player;
 
 public class TestGame {
 
-	private static Game game;
+	private Game game;
 	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	@Before
+	public void setUpBefore() throws Exception {
 		game = new Game();
+		game.addPlayer(0);
+		game.addPlayer(1);
+		game.addPlayer(2);
 	}
 
 	@Test
 	public void testAddPlayerInt() {
-		game.addPlayer(1);
-		Player p1 = game.getPlayerById(1);
-		Player p2 = game.getPlayerByIndex(0);
+		game.addPlayer(4);
+		Player p1 = game.getPlayerById(4);
+		Player p2 = game.getPlayerByIndex(3);
+		int nr = game.getNumberOfPlayers();
 		assertEquals(p1, p2);
-	}
-
-	@Test
-	public void testAddPlayerIntString() {
-		fail("Not yet implemented");
+		assertEquals(nr, 4);
 	}
 
 	@Test
 	public void testStartGame() {
-		fail("Not yet implemented");
+		game.startGame();
+		for (int i = 0; i < 3; i++) {
+			int nr = game.getPlayerCards(i);
+			assertEquals(nr, 4);
+		}
+		int number = game.getNumberOfCards();
+		assertEquals(number, 20);
 	}
 
 	@Test
 	public void testDealCards() {
-		fail("Not yet implemented");
+		game.dealCards();
+		int number = game.getNumberOfCards();
+		assertEquals(number, 29);
 	}
 
 	@Test
 	public void testPlayHand() {
-		fail("Not yet implemented");
+		game.addPlayer(3);
+		game.dealCards();
+		String[] cards = new String[4];
+		cards[0] = "14-T";
+		cards[1] = "13-T";
+		cards[2] = "12-T";
+		cards[3] = "11-T";
+		boolean ok = game.playHand(cards, false);
+		assertEquals(ok, false);
 	}
 
 	@Test
 	public void testCanContinue() {
-		fail("Not yet implemented");
+		game.dealCards();
+		Player p = game.getPlayerByIndex(0);
+		boolean ok = game.canContinue(p, 14);
+		assertEquals(ok, true);
 	}
 
 	@Test
 	public void testWinHand() {
-		fail("Not yet implemented");
+		game.addPlayer(3);
+		game.dealCards();
+		String[] cards = new String[4];
+		cards[0] = "14-T";
+		cards[1] = "13-T";
+		cards[2] = "12-T";
+		cards[3] = "11-T";
+		game.playHand(cards, false);
+		game.winHand();
+		assertEquals((int) game.getPlayerByIndex(0).getScore(), 1);
+		assertEquals((int) game.getPlayerByIndex(1).getScore(), 0);
+		assertEquals((int) game.getPlayerByIndex(2).getScore(), 1);
+		assertEquals((int) game.getPlayerByIndex(3).getScore(), 0);
 	}
 
 	@Test
 	public void testEndOfGame() {
-		fail("Not yet implemented");
+		boolean end = game.endOfGame();
+		assertEquals(end, false);
 	}
 
 	@Test
 	public void testGetCurrentHand() {
-		fail("Not yet implemented");
+		String str = game.getCurrentHand(3);
+		assertEquals(str, null);
 	}
 
 	@Test
 	public void testGetFirstPlayer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCurrentStatus() {
-		fail("Not yet implemented");
+		int i = game.getFirstPlayer();
+		assertEquals(i, 0);
 	}
 
 }

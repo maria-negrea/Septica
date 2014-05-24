@@ -96,7 +96,7 @@ public class ServerSocketThread extends Thread {
 
 		while (!socket.isClosed() && running) {
 
-			this.PlayedCard = null;
+		//	this.PlayedCard = null;
 			this.Continue = false;
 			try {
 				
@@ -117,6 +117,9 @@ public class ServerSocketThread extends Thread {
 					}
 					else {
 						this.PlayedCard = toReceive;
+						
+						//PlayerCard sa fie un string care implementeaza OBserver interface
+						//
 					}
 				}
 			} catch (IOException e) {

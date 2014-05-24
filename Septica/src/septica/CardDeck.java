@@ -17,6 +17,10 @@ public class CardDeck {
 			}
 	}
 	
+	public List<Card> cards() {
+		return cards;
+	}
+	
 	public Integer size() {
 		return cards.size();
 	}

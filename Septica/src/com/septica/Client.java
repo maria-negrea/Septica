@@ -66,14 +66,112 @@ public class Client implements Runnable {
 	}
 
 	void notifyAllO(String t, String code) {
+		
 		int i=1;
 		String[] split = code.split(" ");
 		int k = 1;
 		for (ObserverSeptica x : observers) {
 			if (x.getId().equals("playerCard"))
-				x.update(split[k]);
-			if(x.getId().equals("cardDown"));
-				x.update(split[k]);
+			{
+				if(t.equals("playerCard"))
+				{
+					x.update(split[k],0);
+				}
+				if(t.equals("play")||t.equals("continue"))
+				{
+					x.update("nimic",1);
+				}
+			}
+			else
+			{
+				if(t.equals("cardDown"))
+				{
+					String[] tokens=split[1].split("[:]");
+					if(x.getId()=="cardDownTop")
+					{
+						if(tokens[0].equals("-2")||tokens[0].equals("2"))
+						{
+							x.update(tokens[1], 3);
+						}
+					}							
+					
+					if(x.getId()=="cardDownLeft")
+					{
+						if(tokens[0].equals("-3")||tokens[0].equals("1"))
+						{
+							x.update(tokens[1], 3);
+						}
+					}						
+					
+					if(x.getId()=="cardDownRight")
+					{
+						if(tokens[0].equals("3")||tokens[0].equals("-1"))
+						{
+							x.update(tokens[1], 3);
+						}
+					}
+						
+					
+					if(x.getId()=="cardDownCurrent"&&tokens[0].equals("0"))
+					{
+						x.update(tokens[1], 3);
+					}
+					
+				}
+			}
+			
+			
+				
+			/*if(x.getId().equals("cardDownTop"))
+			{
+				String[] tokens=split[k].split("[:]");
+				if(t.equals("cardDown)"))
+				{
+					x.update(code, 3);
+				}
+				else
+				{
+					x.update("nimic",2);
+				}
+			}
+			
+			if(x.getId().equals("cardDownLeft"))
+			{
+				if(t.equals("cardDown)"))
+				{
+					x.update(code, 3);
+				}
+				else
+				{
+					x.update("nimic",2);
+				}
+			}
+			
+			if(x.getId().equals("cardDownRight"))
+			{
+				if(t.equals("cardDown)"))
+				{
+					x.update(code, 3);
+				}
+				else
+				{
+					x.update("nimic",2);
+				}
+			}
+			
+			if(x.getId().equals("cardDownCurrent"))
+			{
+				if(t.equals("cardDown)"))
+				{
+					x.update(code, 3);
+				}
+				else
+				{
+					x.update("nimic",2);
+				}
+			}
+			*/
+				
 			k++;
 
 		}
@@ -99,15 +197,17 @@ public class Client implements Runnable {
 		switch (splited[0]) {
 		case "currentCards":
 			 notifyAllO("playerCard", mesaj);
-			 System.out.println("process playerCard");
 			break;
-		case "nok":
-			System.out.println(splited[0]);
-			notifyAllO("nok", "");
+		case "play":
+			notifyAllO("play", mesaj);
 			break;
-		case "TOALL":
+		case "continue":
 			System.out.println(splited[0]);
-			notifyAllO(mesaj, "TOALL");
+			notifyAllO("continue", mesaj);
+			break;
+		case "cardDown":
+			System.out.println(splited[0]);
+			notifyAllO("cardDown", mesaj);
 			break;
 		default:
 			notifyAllO(mesaj, "");

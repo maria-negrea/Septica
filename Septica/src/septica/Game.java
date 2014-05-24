@@ -13,6 +13,18 @@ public class Game {
 		deck = new CardDeck();
 		players = new ArrayList <Player>();
 	}
+	
+	public Integer getNumberOfPlayers() {
+		return players.size();
+	}
+	
+	public Integer getNumberOfCards() {
+		return deck.size();
+	}
+	
+	public Integer getPlayerCards(Integer index) {
+		return players.get(index).numberOfCards();
+	}
 
 	public void addPlayer( int id ) {
 		Player p = new Player(id);
@@ -34,7 +46,7 @@ public class Game {
 			while ( it.hasNext() )
 				deck.deal( it.next() );
 		}
-				
+		
 		for ( ; count < 4; count ++ )
 			dealCards();
 	}
@@ -98,7 +110,8 @@ public class Game {
 	}
 	
 	public boolean endOfGame() {
-		if ( players.get(0).numberOfCards() == 0 )
+		if ( deck.size() == 0 
+				&& players.get(players.size() - 1).numberOfCards() == 0 )
 			return true;
 		return false;
 	}

@@ -46,6 +46,10 @@ public class Player {
 	public void setName( String name ) {
 		this.name = name;
 	}
+	
+	public Card getCard( Integer index ) {
+		return hand.get(index);
+	}
 
 	public Integer numberOfCards() {
 		return hand.size();
@@ -56,7 +60,12 @@ public class Player {
 	}
 	
 	public void playCard( Card c ) {
-		hand.remove(c);
+		List<Card> aux = new ArrayList <Card> ();
+		for (Card card : hand)
+			if (card.getSymbol() != c.getSymbol() 
+			|| card.getValue() != c.getValue())
+				aux.add(card);
+		hand = aux;
 	}
 	
 	public boolean findCard( Integer value ) {

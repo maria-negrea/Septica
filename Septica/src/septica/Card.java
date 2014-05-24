@@ -70,7 +70,7 @@ public class Card {
 	
 	public String toString() {
 		String str = new String();
-		str += value.toString();
+		str += value.toString() + "-";
 		switch (symbol) {
 			case 0:
 				str += "IR";
